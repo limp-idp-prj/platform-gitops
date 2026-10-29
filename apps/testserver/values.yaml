@@ -1,0 +1,7 @@
+# managed by platform:gitops:register
+image:
+  repository: ghcr.io/limp-idp-prj/testserver
+  tag: ""
+replicaCount: 0
+ingress:
+  host: testserver.localtest.me
