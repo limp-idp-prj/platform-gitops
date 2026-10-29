@@ -1,7 +1,7 @@
 # managed by platform:gitops:register
 image:
   repository: ghcr.io/limp-idp-prj/demo-form-1
-  tag: ""
-replicaCount: 0
+  tag: "8a1a4db84e92d2162e15e27a37dd1ca9d4b06ba8"
+replicaCount: 1
 ingress:
   host: demo-form-1.localtest.me
