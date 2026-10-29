@@ -1,0 +1,6 @@
+{{- if .Values.ingress.enabled }}
+Сервис {{ include "service.name" . }}: http://{{ include "service.host" . }}
+Проверка: curl http://{{ include "service.host" . }}{{ .Values.health.path }}
+{{- else }}
+Сервис {{ include "service.name" . }}: kubectl -n {{ .Release.Namespace }} port-forward svc/{{ include "service.name" . }} 8080:{{ .Values.service.port }}
+{{- end }}

@@ -1,0 +1,18 @@
+replicaCount: 2
+image:
+  repository: ghcr.io/limp-idp-prj/full
+  tag: abc123
+  pullPolicy: Always
+imagePullSecrets:
+  - name: ghcr
+containerPort: 3000
+service:
+  port: 8080
+ingress:
+  enabled: true
+  host: full.example.test
+health:
+  path: /healthz
+env:
+  - name: LOG_LEVEL
+    value: debug

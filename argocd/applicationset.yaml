@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: services
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/limp-idp-prj/platform-gitops
+        revision: main
+        requeueAfterSeconds: 30
+        directories:
+          - path: apps/*
+  template:
+    metadata:
+      name: '{{.path.basename}}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: platform
+      source:
+        repoURL: https://github.com/limp-idp-prj/platform-gitops
+        targetRevision: main
+        path: charts/service
+        helm:
+          releaseName: '{{.path.basename}}'
+          valueFiles:
+            - '../../apps/{{.path.basename}}/values.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

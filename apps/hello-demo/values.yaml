@@ -1,0 +1,9 @@
+# Фикстура N2: каталог в GitOps есть, репозитория сервиса нет; не создавать репозиторий hello-demo.
+# ПРИМЕР: эталонный сервис (managed by platform:gitops:register).
+# Образ появится при наличии GitHub-организации и собранного CI образа.
+image:
+  repository: ghcr.io/limp-idp-prj/hello-demo
+  tag: ""
+replicaCount: 0
+ingress:
+  host: hello-demo.localtest.me
