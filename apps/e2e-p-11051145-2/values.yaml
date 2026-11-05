@@ -1,7 +1,7 @@
 # managed by platform:gitops:register
 image:
   repository: ghcr.io/limp-idp-prj/e2e-p-11051145-2
-  tag: ""
-replicaCount: 0
+  tag: "e6e132ff78ee3adb6c2e497c512a0b19d45f78f0"
+replicaCount: 1
 ingress:
   host: e2e-p-11051145-2.localtest.me
